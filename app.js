@@ -278,7 +278,7 @@ app.post ('/deletestudent', function(req,res) {
 
 
 
-
+// Academics Schema
 var acdSchema = new mongoose.Schema({
     class:String,
     section:String,
@@ -297,7 +297,7 @@ var acdSchema = new mongoose.Schema({
 var acdModel = mongoose.model("academics", acdSchema);
 
 
-/*Loading alumini*/
+/*Loading Academics*/
 app.get('/academics', (req, res) => {
     var noMatch = null;
 
@@ -312,7 +312,7 @@ app.get('/academics', (req, res) => {
     }
 });
 
-/*adding alumini*/
+/*adding Academics*/
 app.post("/addacademics", upload.single('image'), (req, res) => {
     const saveStudents = new acdModel({
         class:req.body.class,
@@ -335,7 +335,7 @@ app.post("/addacademics", upload.single('image'), (req, res) => {
         }
       );
 })
-/*deleting alumini*/
+/*deleting Academics*/
 app.post ('/deleteall_academics', function(req,res) {
 
     acdModel.deleteMany({}).then(
@@ -379,4 +379,68 @@ app.listen(process.env.PORT || 3000, function (err) {
     else {
         console.log("Server started at 3000");
     }
+})
+
+// Contact Schema
+var conSchema = new mongoose.Schema({
+    phno:String,
+    studentname: String,
+    class: String,
+    enquiry:String
+  },
+  {
+      collection : 'vagdevi_messages'
+  });
+var mesModel = mongoose.model("messages", conSchema);
+
+
+/*Loading Contact*/
+app.get('/messages', (req, res) => {
+    var noMatch = null;
+
+    {
+        mesModel.find({}, function(err, allmessages){
+           if(err){
+               console.log(err);
+           } else {
+              res.render("messages",{vagdevi_messages:allmessages, noMatch: noMatch});
+           }
+        });
+    }
+});
+
+/*adding Contact*/
+app.post("/addmessages", (req, res) => {
+    const saveMessages = new mesModel({
+        phno:req.body.mob,
+        studentname: req.body.name,
+        class: req.body.class,
+        enquiry:req.body.requ
+    });
+    saveMessages.save().then(
+        () => {
+            res.redirect("/");
+        }
+      ).catch(
+        (error) => {
+          res.render("contact");
+          console.log(error);
+        }
+      );
+})
+
+// delete messages
+app.post ('/deletemsg', function(req,res) {
+
+    const deleteMess = mesModel.findOne({studentname: req.body.studentname},{class: req.body.class});
+    deleteMess.remove().then(
+        () => {
+            res.redirect("/");
+        }
+      ).catch(
+        (error) => {
+          res.render(error);
+        }
+      );
+    
 })
