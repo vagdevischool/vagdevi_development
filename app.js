@@ -1,46 +1,48 @@
 const express = require('express');
-        passport = require('passport');
-        mongoose = require('mongoose');
-        bodyParser = require('body-parser');
-        LocalStrategy = require('passport-local');
-        passportLocalMongoose = require('passport-local-mongoose');
-    
-        app=express();
-
-        mongoose.connect('mongodb://localhost/vagdevi');    
-
-        app.use(require("express-session") ({
-            secret:"Any normal Word",//decode or encode session
-            resave: false,          
-            saveUninitialized:false   
-        }));
-
+const { Result } = require('express-validator');
+      passport = require('passport');
+      mongoose = require('mongoose');
+      alert = require('alert');
+app=express();
+      passport = require('passport');
+      bodyParser = require('body-parser');
+      LocalStrategy = require('passport-local');
+      passportLocalMongoose = require('passport-local-mongoose');
+      User =  require("./models/user");
+// Connecting to database
+mongoose.connect('mongodb://localhost/vagdevi');
+      app.use(require("express-session") ({
+          secret:"Any normal Word",//decode or encode session
+          resave: false,          
+          saveUninitialized:false   
+      }));
 var Schema = mongoose.Schema;
-/*passport.serializeUser(User.serializeUser());       //session encoding
+passport.serializeUser(User.serializeUser());       //session encoding
 passport.deserializeUser(User.deserializeUser());   //session decoding
-passport.use(new LocalStrategy(User.authenticate()));*/
+passport.use(new LocalStrategy(User.authenticate()));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded(
-    { extended:true }
+      { extended:true }
 ))
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use( express.static( "public" ) );
 app.use(bodyParser.json());
 var fs = require('fs');
 var path = require('path');
 require('dotenv/config');
-
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads')
     },
     filename: (req, file, cb) => {
-       cb(null, file.fieldname + '-' + Date.now())
+        cb(null, file.fieldname + '-' + Date.now())
     }
 });
-   
+ 
 var upload = multer({ storage: storage });
+
 //connecting to DB
 
 app.get('/', (req, res) => {
@@ -51,12 +53,17 @@ app.get('/about', (req, res) => {
     res.render("about");
 })
 
+app.get('/login', (req, res) => {
+    res.render("login");
+})
 
 
 app.get('/contact', (req, res) => {
     res.render("contact");
 })
-
+app.get('/register', (req, res) => {
+    res.render("register");
+})
 
 app.get('/addalumini', (req, res) => {
     res.render("addalumini");
@@ -65,10 +72,38 @@ app.get('/addevents', (req, res) => {
     res.render("addevents");
 })
 
-
 app.get('/addacademics', (req, res) => {
     res.render("addacademics");
 })
+
+app.get('/admin', (req, res) => {
+    res.render("admin");
+})
+
+app.post("/login_authent", passport.authenticate("local", {
+    successRedirect:"/admin",
+    failureRedirect:"/login",
+}),function(req, res) {
+});
+
+
+app.post("/register", (req, res) => {
+    User.register(new User ({
+        username: req.body.username,
+        phone: req.body.phone,
+        password:req.body.password,
+    }),
+    req.body.password, function(err, user) {
+        if(err) {
+            console.log(err);
+            res.render("register");
+        }
+        passport.authenticate("local") (req, res, function() {
+            res.redirect("/login");
+        })
+    })
+});
+
 
 /*events schema*/
 var ItemSchema = new mongoose.Schema({
@@ -101,7 +136,7 @@ app.post("/addevents", upload.single('image'), (req, res) => {
     });
     saveItem.save().then(
         () => {
-            res.redirect("/events");
+            res.redirect("/addevents");
         }
       ).catch(
         (error) => {
@@ -130,7 +165,7 @@ app.post ('/deleteevents', function(req,res) {
     const deleteEvents = itemsModel.findOne({eventname: req.body.eventname1},{studentname: req.body.studentname1});
     deleteEvents.remove().then(
         () => {
-            res.redirect("/events");
+            res.redirect("/addevents");
         }
       ).catch(
         (error) => {
@@ -144,7 +179,7 @@ app.post ('/deleteall_events', function(req,res) {
 
     itemsModel.deleteMany({}).then(
         () => {
-            res.redirect("/events");
+            res.redirect("/addevents");
         }
       ).catch(
         (error) => {
@@ -200,7 +235,7 @@ app.post("/addalumini", upload.single('image'), (req, res) => {
     });
     saveStudents.save().then(
         () => {
-            res.redirect("/alumini");
+            res.redirect("/addalumini");
         }
       ).catch(
         (error) => {
@@ -214,7 +249,7 @@ app.post ('/deleteall_alumini', function(req,res) {
 
     aluModel.deleteMany({}).then(
         () => {
-            res.redirect("/alumini");
+            res.redirect("/addalumini");
         }
       ).catch(
         (error) => {
@@ -226,10 +261,10 @@ app.post ('/deleteall_alumini', function(req,res) {
 
 app.post ('/deletestudent', function(req,res) {
 
-    const deletestudent = aluModel.findOne({student_name: req.body.studentname},{student_year : req.body.year});
+    const deletestudent = aluModel.findOne({studentname: req.body.studentname1},{year : req.body.year1});
     deletestudent.remove().then(
         () => {
-            res.redirect("/alumini");
+            res.redirect("/addalumini");
         }
       ).catch(
         (error) => {
@@ -291,7 +326,7 @@ app.post("/addacademics", upload.single('image'), (req, res) => {
     });
     saveStudents.save().then(
         () => {
-            res.redirect("/academics");
+            res.redirect("/addacademics");
         }
       ).catch(
         (error) => {
@@ -305,7 +340,7 @@ app.post ('/deleteall_academics', function(req,res) {
 
     acdModel.deleteMany({}).then(
         () => {
-            res.redirect("/academics");
+            res.redirect("/addacademics");
         }
       ).catch(
         (error) => {
@@ -317,10 +352,10 @@ app.post ('/deleteall_academics', function(req,res) {
 
 app.post ('/deletestudent_academics', function(req,res) {
 
-    const deletestudent = acdModel.findOne({student_name: req.body.studentname},{student_class : req.body.class},{student_section : req.body.section});
+    const deletestudent = acdModel.findOne({studentname: req.body.studentname1},{class : req.body.class1},{section : req.body.section1});
     deletestudent.remove().then(
         () => {
-            res.redirect("/academics");
+            res.redirect("/addacademics");
         }
       ).catch(
         (error) => {
@@ -329,6 +364,13 @@ app.post ('/deletestudent_academics', function(req,res) {
       );
     
 })
+
+
+app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
+});
+
 
 app.listen(process.env.PORT || 3000, function (err) {
     if(err) {
