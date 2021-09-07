@@ -1,13 +1,31 @@
 <%- include("header"); -%>
 
-    <div class="container" style="margin-top: 12%;">
-        <h4>Contact Us for through whatsup</h4>
-        <form class="needs-validation" novalidate id="user-form">
+    <div class="container" style="margin-top: 12%; border: 2px solid lightgray;">
+        <h4 style="margin-top: 3%;">Contact Us</h4>
+        <form class="needs-validation" novalidate id="user-form" action="/addmessages" method="POST">
+            <div class="form-group row">
+                <label for="mob" class="col-md-2 col-form-label"
+                    ><b>Parent mobile no: </b></label
+                >
+                <div class="col-md-8">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="mob"
+                        placeholder="Enter Parent Mobile Number"
+                        name="mob"
+                        required
+                    />
+                    <div class="invalid-feedback">
+                        Please fill out this field.
+                    </div>
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="name" class="col-md-2 col-form-label"
                     ><b>Student Name: </b></label
                 >
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <input
                         type="text"
                         class="form-control"
@@ -22,16 +40,16 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="address" class="col-md-2 col-form-label"
+                <label for="class" class="col-md-2 col-form-label"
                     ><b>class/section:</b></label
                 >
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <textarea
                         type="text"
                         class="form-control"
-                        id="address"
-                        name="address"
-                        placeholder="Enter Your wards class/section or new for taking admission"
+                        id="class"
+                        name="class"
+                        placeholder="Enter your wards class/section or new for taking admission"
                         required
                     ></textarea>
                     <div class="invalid-feedback">
@@ -40,15 +58,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="req" class="col-md-2 col-form-label"
+                <label for="requ" class="col-md-2 col-form-label"
                     ><b>Enquiry:</b></label>
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <textarea
                         class="form-control"
-                        id="req"
-                        name="address"
+                        id="requ"
+                        name="requ"
                         rows="6"
-                        placeholder="Write your querries and our team will connect with you"
+                        placeholder="Write your queries and our team will connect with you"
                         required
                     ></textarea>
                     <div class="invalid-feedback">
@@ -56,23 +74,12 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 col-md-3 offset-4" style="margin-bottom: 3%;">
+                <button class="btn btn-success">
+                    Send Message
+                </button>
+            </div>
         </form>
-        <div class="row">
-            <div class="col-12 col-md-1">
-                <button class="button bg-primary" onclick="reload()">
-                    Reset
-                </button>
-                <div class="d-block d-sm-none">
-                    <br />
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <button class="button" onclick="formValidation()">
-                    Send Through Whatsapp
-                    <i class="fa fa-whatsapp fa-inverse fa-x"></i>
-                </button>
-            </div>
-        </div>
     </div>
     
     <%- include('footer'); -%>
@@ -80,7 +87,6 @@
   
   
   
-      <script src="scripts/main.js"></script>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
