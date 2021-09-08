@@ -435,7 +435,7 @@ app.post ('/deletemsg', function(req,res) {
     const deleteMess = mesModel.findOne({studentname: req.body.studentname},{class: req.body.class});
     deleteMess.remove().then(
         () => {
-            res.redirect("/");
+            res.redirect("/messages");
         }
       ).catch(
         (error) => {
