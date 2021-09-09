@@ -208,18 +208,29 @@ var aluModel = mongoose.model("alumini", aluSchema);
 
 
 /*Loading alumini*/
-app.get('/alumini', (req, res) => {
+app.get('/alumini', function(req, res) {
     var noMatch = null;
-
-    {
-        aluModel.find({}, function(err, allalumini){
-           if(err){
-               console.log(err);
-           } else {
-              res.render("alumini",{vagdevi_alumini:allalumini, noMatch: noMatch});
-           }
-        });
+    var arr=[];
+    aluModel.find({}, function(err, allalumini){
+    
+    if(err){
+       console.log(err);
+    } else {   
+        for(var i = 0; i < allalumini.length; i++){
+            arr.push(allalumini[i].year);
+        } 
+        function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+        }
+          
+          // usage example:
+          
+        var parr = arr.filter(onlyUnique);
+        parr.sort(function(a, b){return b-a});
+        res.render("alumini",{vagdevi_alumini:allalumini, noMatch: noMatch,parr});        
     }
+    });
+    
 });
 
 /*adding alumini*/
@@ -372,14 +383,7 @@ app.get("/logout", (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 3000, function (err) {
-    if(err) {
-        console.log(err);
-    }
-    else {
-        console.log("Server started at 3000");
-    }
-})
+
 
 // Contact Schema
 var conSchema = new mongoose.Schema({
@@ -443,4 +447,15 @@ app.post ('/deletemsg', function(req,res) {
         }
       );
     
+})
+
+
+
+app.listen(process.env.PORT || 3000, function (err) {
+    if(err) {
+        console.log(err);
+    }
+    else {
+        console.log("Server started at 3000");
+    }
 })

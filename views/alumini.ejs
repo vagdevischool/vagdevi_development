@@ -1,25 +1,39 @@
 <%- include("header", {active: "alumini"}); -%>
-    <div class="books row">
-    <% for(var i = 0; i < vagdevi_alumini.length; i++) {%>
-        
-      <div class="book card col-12 col-md-4"  style="text-align: center; width: 30%; height: 80%;background-color: blue;">
-        <div class="card-body ">
-          <img src="data:image/<%=vagdevi_alumini[i].img.contentType%>;base64,<%=vagdevi_alumini[i].img.data.toString('base64')%>" height="60%" width="60%">
-          <h5>Student Name: <%=vagdevi_alumini[i].studentname %></h5>
-          <h5>Description: <%= vagdevi_alumini[i].description %></h5>
-          <h5>Event date: <%= vagdevi_alumini[i].year %></h5>
-        </div>
-      </div>
+<div style="margin-left: 7%;margin-right: 8%;margin-top:20%">
+
+
+    <% for(var j = 0; j < parr.length; j++) {%>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+      </ol>
     <% } %>
-    </div>
 
+      <% for(var j = 0; j < parr.length; j++) {%>
+            <div class="books row">
+            <% for(var i = 0; i < vagdevi_alumini.length; i++) {%>
+                <% if(parr[j]==vagdevi_alumini[i].year){ %>
+                  
+                      <div class="book card col-12 col-md-4"  style="text-align: center; width: 30%; height: 80%;background-color: blue;">
+                        <div class="card-body ">
+                          <img src="data:image/<%=vagdevi_alumini[i].img.contentType%>;base64,<%=vagdevi_alumini[i].img.data.toString('base64')%>" height="60%" width="60%">
+                          <h5>Student Name: <%=vagdevi_alumini[i].studentname %></h5>
+                          <h5>Description: <%= vagdevi_alumini[i].description %></h5>
+                          <h5>Description: <%= vagdevi_alumini[i].year %></h5>
+                        </div>
+                      </div>
+                    
+                <% }%>
+            <% } %>
+        </div>  
+    <% } %>
 
+</div>
 
     
     <%- include('footer'); -%>
   
 <script src="../scripts/sorting.js"></script>
-
+<script src="/app.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
