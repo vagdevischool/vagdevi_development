@@ -1,11 +1,15 @@
 <%- include("header", {active: "alumini"}); -%>
-<div style="margin-left: 7%;margin-right: 8%;margin-top:20%">
-
-
-    <% for(var j = 0; j < parr.length; j++) {%>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Home</li>
-      </ol>
+    <div class="books row" style=" overflow-x:hidden;">
+    <% for(var i = 0; i < vagdevi_alumini.length; i++) {%>
+        
+      <div class="book card col-12 col-md-4"  style="text-align: center; width: 30%; height: 80%;background-color: blue;">
+        <div class="card-body ">
+          <img src="data:image/<%=vagdevi_alumini[i].img.contentType%>;base64,<%=vagdevi_alumini[i].img.data.toString('base64')%>" height="60%" width="60%">
+          <h5>Student Name: <%=vagdevi_alumini[i].studentname %></h5>
+          <h5>Description: <%= vagdevi_alumini[i].description %></h5>
+          <h5>Event date: <%= vagdevi_alumini[i].year %></h5>
+        </div>
+      </div>
     <% } %>
 
       <% for(var j = 0; j < parr.length; j++) {%>
