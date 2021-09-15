@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .row-content {
+          margin: 0px auto;
+          padding: 50px 0px;  }
+          body {
+          padding: 50px 0px 0px 0px;
+          z-index: 0; }
+    </style>
 </head>
 <body>
     <header>
@@ -50,23 +58,25 @@
           </nav>
     </header>
 <body>
-<div style="margin-left: 7%;margin-right: 8%;margin-top:20%">
-    <div class="row">
-        <div class="col">
+<div class="container" style="margin-top:12%">
+    <div class="row row-content">
+        <div class="col-6 offset-4 col-md-3 offset-md-0" style="margin-bottom: 2%;">
             <a role="button" class="btn btn-warning" href="/addevents" style="color: black;font-weight: bold;">Add events</a>
         </div>
-        <div class="col">
+        <div class="col-6 offset-4 col-md-3 offset-md-0" style="margin-bottom: 2%;">
             <a role="button" class="btn btn-warning" href="/addalumini" style="color: black;font-weight: bold;">Add alumini</a>
         </div>
-        <div class="col">
+        <div class="col-6 offset-4 col-md-3 offset-md-0" style="margin-bottom: 2%;">
             <a role="button" class="btn btn-warning" href="/addacademics" style="color: black;font-weight: bold;">Add academics</a>
         </div>
-        <div class="col">
+        <div class="col-6 offset-4 col-md-3 offset-md-0">
             <a role="button" class="btn btn-warning" href="/messages" style="color: black;font-weight: bold;">View message</a>
         </div>
     </div>
 </div>
-<%- include('footer'); -%>
+<div style="margin-top: 7%;">
+    <%- include('footer'); -%>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

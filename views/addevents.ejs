@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .row-content {
+          margin: 0px auto;
+          padding: 50px 0px; 
+        display: block;}
+          body {
+          z-index: 0; }
+    </style>
 </head>
 <body>
     <header>
@@ -52,7 +60,7 @@
 <body>
     
     <div class="row">
-    <div class="col-12 col-md-6 box-2 eventform">
+    <div class="col-12 col-md-6 box-2 rounded eventform">
         <br>
         <center>
             <h3>Create Event</h3>
@@ -151,7 +159,7 @@
             <br>
         </div>
     </div>
-    <div class="col-12 col-md-5 mar box-2 eventform">
+    <div class="col-12 col-md-5 mar box-2 rounded eventform">
         <div>
             <form class="needs-validation" novalidate id="user-form" action="/deleteevents" method="POST">
                 <br>
@@ -197,19 +205,16 @@
                 </div>
                 <button class="btn submit btn-danger submit-1 col-md-3 offset-2" id="delete-button">
                     Delete
-                </button>
+                </button> <br> <br>
             </form>
-        </div>
-        
-    </div>
-    <div class="col-12 col-md-5 mar box-2 eventform">
-        <div>
-            <form class="needs-validation" novalidate id="user-form" action="/deleteall" method="POST">
+            <form class="needs-validation" novalidate id="user-form" action="/deleteall" method="POST" style="margin-top: 20%;">
+                <label style="font-weight: bold; color: red; font-size: 100%;">Note: Delete all button deletes all the events</label>
                 <button class="btn submit btn-danger submit-1 col-md-3 offset-2" id="delete-button">
                     Delete All
                 </button>
             </form>
         </div>
+        
     </div>
 </div>
 

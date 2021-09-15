@@ -1,48 +1,46 @@
+/** @format */
+
 .navbar li {
-    margin-right : 15px;
-    
+	margin-right: 15px;
 }
+
 footer {
-    background-color: whitesmoke;
-    margin-top: 10%;
-    margin-bottom: 1%;
+	background-color: whitesmoke;
+	margin-top: 10%;
+	margin-bottom: 1%;
 }
 
 .button {
-    border: none;
-    color: white;
-    padding: 9px 18px;
-    background-color: #25d366;
-    font-size: 14px;
-    border-radius: 3px;
-    
+	border: none;
+	color: white;
+	background-color: #25d366;
+	font-size: 14px;
+	border-radius: 3px;
 }
 
 .carousel {
-    background: whitesmoke; }
-    .carousel .carousel-item {
-      height: 300px; }
-      .carousel .carousel-item img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        min-height: 300px; }
-  
-.col-4 {
-    color: rgba(0, 0, 0, 0.699);
+	background: whitesmoke;
+}
+.carousel .carousel-item {
+	height: 300px;
+}
+.carousel .carousel-item img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-height: 300px;
 }
 
-
-.eventform{
-    margin-top: 9%;
-    margin-left: 2%;
+.eventform {
+	margin-top: 9%;
+	margin-left: 2%;
 }
 
-.box-2{
-    border: 2px solid rgba(0, 0, 0, 0.178);
+.box-2 {
+	border: 2px solid rgba(0, 0, 0, 0.178);
 }
 
-.box-1{
-    border-top: 2px solid rgba(0, 0, 0, 0.178);
-    margin-top: 3%;
+.box-1 {
+	border-top: 2px solid rgba(0, 0, 0, 0.178);
+	margin-top: 3%;
 }

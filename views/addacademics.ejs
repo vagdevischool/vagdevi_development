@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .row-content {
+          margin: 0px auto;
+          padding: 50px 0px; 
+        display: block;}
+          body {
+          padding: 50px auto;
+          z-index: 0; }
+          html {
+            overflow-x:hidden;
+          }
+    </style>
 </head>
 <body>
     <header>
@@ -44,7 +56,7 @@
                 </li>
               </ul>
               <form action="/admin" method="GET" class="form-inline">
-                <a class="btn btn-outline-danger" href="/logout" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</a>
+                <a class="btn btn-outline-danger" href="/logout" class="btn btn-outline-danger" type="submit">Log out</a>
                 </form>
             </div>
           </nav>
@@ -60,10 +72,10 @@
         <div>
             <form class="needs-validation" novalidate id="user-form" action="/addacademics" method="POST" enctype="multipart/form-data" style="margin-left: 2%;">
                 <div class="form-group row">
-                    <label for="class" class="col-md-4 col-form-label"
+                    <label for="class" class="col-4 col-form-label"
                         ><b>Class: </b></label
                     >
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <input
                             type="text"
                             class="form-control"
@@ -78,10 +90,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="section" class="col-md-4 col-form-label"
+                    <label for="section" class="col-4 col-form-label"
                         ><b>Section: </b></label
                     >
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <input
                             type="text"
                             class="form-control"
@@ -96,10 +108,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="studentname" class="col-md-4 col-form-label"
+                    <label for="studentname" class="col-4 col-form-label"
                         ><b>Student Name: </b></label
                     >
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <input
                             type="text"
                             class="form-control"
@@ -114,10 +126,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="rank" class="col-md-4 col-form-label"
+                    <label for="rank" class="col-4 col-form-label"
                         ><b>Rank</b></label
                     >
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <select name="rank" id="rank">
                             <option>Choose</option>
                         <option>1</option>
@@ -127,10 +139,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="image" class="col-md-4 col-form-label label-1"
+                    <label for="image" class="col-4 col-form-label label-1"
                         ><b>Image: </b></label
                     >
-                    <div class="col-md-6">
+                    <div class="col-6">
                       <input type="file" id="image"
                       name="image" value="" required class="form-control">
                         <div class="invalid-feedback">
@@ -138,7 +150,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn submit btn-primary col-md-4 offset-2">
+                <button class="btn submit btn-primary col-4 offset-2">
                     Submit
                 </button>
             </form>
@@ -154,10 +166,10 @@
                 </center>
                 <br>
                 <div class="form-group row">
-                    <label for="class1" class="col-md-4 col-form-label"
+                    <label for="class1" class="col-4 col-form-label"
                         ><b>Class: </b></label
                     >
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <input
                             type="text"
                             class="form-control"
@@ -172,10 +184,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="section1" class="col-md-4 col-form-label"
+                    <label for="section1" class="col-4 col-form-label"
                         ><b>Section: </b></label
                     >
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <input
                             type="text"
                             class="form-control"
@@ -190,10 +202,10 @@
                     </div>
                 </div>
                     <div class="form-group row">    
-                    <label for="eventname1" class="col-md-4 col-form-label label-1"
+                    <label for="eventname1" class="col-4 col-form-label label-1"
                         ><b>Student Name: </b></label
                     >
-                    <div class="col-md-7">
+                    <div class="col-7">
                         <input
                             type="text"
                             class="form-control"
@@ -207,24 +219,19 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn submit btn-danger submit-1 col-md-3 offset-2" id="delete-button">
+                <button class="btn submit btn-danger submit-1 col-3 offset-2" id="delete-button">
                     Delete
+                </button>
+            </form>
+            <form class="needs-validation" novalidate id="user-form" action="/deleteall_academics" method="POST" style="margin-top: 12%;">
+                <label style="font-weight: bold; color: red; font-size: 100%;">Note: Delete all button deletes all the events</label>
+                <button class="btn submit btn-danger submit-1 col-3 offset-2" id="delete-button">
+                    Delete All
                 </button>
             </form>
         </div>
         
     </div>
-    <div class="col-12 col-md-5 mar box-2 eventform">
-        <div>
-            <form class="needs-validation" novalidate id="user-form" action="/deleteall_academics" method="POST">
-                <button class="btn submit btn-danger submit-1 col-md-3 offset-2" id="delete-button">
-                    Delete All
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-<script src="../scripts/sorting.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

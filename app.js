@@ -175,7 +175,7 @@ app.post ('/deleteevents', function(req,res) {
     
 })
 /*delete all events*/
-app.post ('/deleteall_events', function(req,res) {
+app.post ('/deleteall', function(req,res) {
 
     itemsModel.deleteMany({}).then(
         () => {

@@ -1,13 +1,49 @@
 <%- include("header", {active: "academics"}); -%>
-    <div class="books row" style=" overflow-x:hidden;">
-      
+<div class="row d-none d-md-block"  style="margin-top: 4%;">
+  <div class="col-md-8 offset-md-4">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2 btn-group-lg" role="group" aria-label="First group">
+        <button type="button" class="btn btn-secondary">1</button>
+        <button type="button" class="btn btn-secondary">2</button>
+        <button type="button" class="btn btn-secondary">3</button>
+        <button type="button" class="btn btn-secondary">4</button>
+        <button type="button" class="btn btn-secondary">5</button>
+        <button type="button" class="btn btn-secondary">6</button>
+        <button type="button" class="btn btn-secondary">7</button>
+        <button type="button" class="btn btn-secondary">8</button>
+        <button type="button" class="btn btn-secondary">9</button>
+        <a type="button" class="btn btn-secondary" href="#10">10</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row d-block d-md-none"  style="margin-top: 12%;overflow-x:hidden;">
+  <div class="col-10 offset-1">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <button type="button" class="btn btn-secondary">1</button>
+        <button type="button" class="btn btn-secondary">2</button>
+        <button type="button" class="btn btn-secondary">3</button>
+        <button type="button" class="btn btn-secondary">4</button>
+        <button type="button" class="btn btn-secondary">5</button>
+        <button type="button" class="btn btn-secondary">6</button>
+        <button type="button" class="btn btn-secondary">7</button>
+        <button type="button" class="btn btn-secondary">8</button>
+        <button type="button" class="btn btn-secondary">9</button>
+        <button type="button" class="btn btn-secondary">10</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="books row" style=" overflow-x:hidden;">    
       <% for(var i = 0; i < vagdevi_academics.length; i++) {%>
-          
-        <div class="book card col-12 col-md-4"  style="text-align: center; width: 30%; height: 80%;background-color: blue;">
+        <div id="<%= vagdevi_academics[i].class %>"></div>
+        <div class="book card col-6 col-md-3 offset-md-1"  style="text-align: center; width: 30%; height: 80%; margin-top: 1%;">
           <div class="card-body ">
             <img src="data:image/<%=vagdevi_academics[i].img.contentType%>;base64,<%=vagdevi_academics[i].img.data.toString('base64')%>" height="60%" width="60%">
             <h5>Student Name: <%=vagdevi_academics[i].studentname %></h5>
             <h5>Rank: <%= vagdevi_academics[i].rank %></h5>
+            <h5>Class: <%= vagdevi_academics[i].class %></h5>
           </div>
         </div>
       <% } %>

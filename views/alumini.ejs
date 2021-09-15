@@ -1,6 +1,6 @@
 <%- include("header", {active: "alumini"}); -%>
-    <div class="books row" style=" overflow-x:hidden;">
-    <% for(var i = 0; i < vagdevi_alumini.length; i++) {%>
+  <!--  <div class="books row" style=" overflow-x:hidden;">
+     <% for(var i = 0; i < vagdevi_alumini.length; i++) {%>
         
       <div class="book card col-12 col-md-4"  style="text-align: center; width: 30%; height: 80%;background-color: blue;">
         <div class="card-body ">
@@ -10,30 +10,28 @@
           <h5>Event date: <%= vagdevi_alumini[i].year %></h5>
         </div>
       </div>
+    <% } %> -->
+<div style="margin-top: 5%;">
+  <% for(var j = 0; j < parr.length; j++) {%>
+    <div class="books row" style="margin-top: 2%; overflow-x: hidden;">
+    <% for(var i = 0; i < vagdevi_alumini.length; i++) {%>
+        <% if(parr[j]==vagdevi_alumini[i].year){ %>
+          
+              <div class="book card col-6 col-md-3 offset-md-1"  style="text-align: center; width: 30%; height: 80%">
+                <div class="card-body ">
+                  <img src="data:image/<%=vagdevi_alumini[i].img.contentType%>;base64,<%=vagdevi_alumini[i].img.data.toString('base64')%>" height="60%" width="60%">
+                  <h5>Student Name: <%=vagdevi_alumini[i].studentname %></h5>
+                  <h5>Description: <%= vagdevi_alumini[i].description %></h5>
+                  <h5>Description: <%= vagdevi_alumini[i].year %></h5>
+                </div>
+              </div>
+            
+        <% }%>
     <% } %>
+</div>  
+<% } %>
+</div>    
 
-      <% for(var j = 0; j < parr.length; j++) {%>
-            <div class="books row">
-            <% for(var i = 0; i < vagdevi_alumini.length; i++) {%>
-                <% if(parr[j]==vagdevi_alumini[i].year){ %>
-                  
-                      <div class="book card col-12 col-md-4"  style="text-align: center; width: 30%; height: 80%;background-color: blue;">
-                        <div class="card-body ">
-                          <img src="data:image/<%=vagdevi_alumini[i].img.contentType%>;base64,<%=vagdevi_alumini[i].img.data.toString('base64')%>" height="60%" width="60%">
-                          <h5>Student Name: <%=vagdevi_alumini[i].studentname %></h5>
-                          <h5>Description: <%= vagdevi_alumini[i].description %></h5>
-                          <h5>Description: <%= vagdevi_alumini[i].year %></h5>
-                        </div>
-                      </div>
-                    
-                <% }%>
-            <% } %>
-        </div>  
-    <% } %>
-
-</div>
-
-    
     <%- include('footer'); -%>
   
 <script src="../scripts/sorting.js"></script>
