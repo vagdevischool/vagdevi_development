@@ -52,7 +52,9 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.render("about");
 })
-
+app.get('/test', (req, res) => {
+    res.render("test");
+})
 app.get('/login', (req, res) => {
     res.render("login");
 })
@@ -189,8 +191,6 @@ app.post ('/deleteall_events', function(req,res) {
     
 })
 
-
-/*Alumini schema*/
 var aluSchema = new mongoose.Schema({
     studentname: String,
     description: String,
@@ -311,15 +311,34 @@ var acdModel = mongoose.model("academics", acdSchema);
 /*Loading Academics*/
 app.get('/academics', (req, res) => {
     var noMatch = null;
-
+    // store years and each section wrt year and ranks then populate 
     {
+        const class_arr=[]
+        const section_arr=[]
+        
         acdModel.find({}, function(err, allacademics){
-           if(err){
-               console.log(err);
-           } else {
-              res.render("academics",{vagdevi_academics:allacademics, noMatch: noMatch});
-           }
+            for(let i=0;i<allacademics.length;i++){
+                if(!class_arr.includes(allacademics[i].class)){
+                    class_arr.push(allacademics[i].class)
+                }
+            }
+            for(let i=0;i<allacademics.length;i++){
+                if(!section_arr.includes(allacademics[i].section)){
+                    section_arr.push(allacademics[i].section)
+                }
+            } 
         });
+        acdModel.find({}, function(err, allacademics){
+        if(err){
+            console.log(err);
+        } else {
+          class_arr.sort()
+          class_arr.reverse()
+          section_arr.sort()
+          res.render("academics",{vagdevi_academics:allacademics, noMatch: noMatch,class_arr,section_arr});
+        }
+        });
+
     }
 });
 
@@ -451,7 +470,7 @@ app.post ('/deletemsg', function(req,res) {
 
 
 
-app.listen(process.env.PORT || 3000, function (err) {
+app.listen(process.env.PORT || 5000, function (err) {
     if(err) {
         console.log(err);
     }

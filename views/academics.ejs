@@ -1,8 +1,15 @@
 <%- include("header", {active: "academics"}); -%>
-    <div class="books row">
-      
+<div style="margin-left: 7%;margin-right: 8%;margin-top:12%">
+  <% for(var  k= 0; k < class_arr.length; k++) {%>
+    <% for(var j = 0; j < section_arr.length; j++) {%>
+    
+        
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page"><b><%= class_arr[k] %>  <%= section_arr[j] %></b></li>
+      </ol>
+      <% for(var r = 1; r < 4; r++) {%>
       <% for(var i = 0; i < vagdevi_academics.length; i++) {%>
-          
+        <% if(class_arr[k]==vagdevi_academics[i].class && section_arr[j]==vagdevi_academics[i].section  && vagdevi_academics[i].rank==r.toString()){ %>
         <div class="book card col-12 col-md-4"  style="text-align: center; width: 30%; height: 80%;background-color: blue;">
           <div class="card-body ">
             <img src="data:image/<%=vagdevi_academics[i].img.contentType%>;base64,<%=vagdevi_academics[i].img.data.toString('base64')%>" height="60%" width="60%">
@@ -10,12 +17,15 @@
             <h5>Rank: <%= vagdevi_academics[i].rank %></h5>
           </div>
         </div>
+        <% }%>
       <% } %>
-      </div>
+      <% }%>
+      <% } %>
+    <% } %>
 
 
 
-      <%- include('footer'); -%>
+<%- include('footer'); -%>
   
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
